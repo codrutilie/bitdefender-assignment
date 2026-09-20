@@ -44,7 +44,7 @@ export class ProfilePage extends BasePage {
 
         const dialog = await dialogPromise;
         const dialogMessage = dialog.message();
-        console.log('Dialog delete message:', dialogMessage);
+        // console.log('Dialog delete message:', dialogMessage);
         await dialog.accept();
     }
 }

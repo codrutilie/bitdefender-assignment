@@ -5,23 +5,18 @@ test.describe('Books Application Store Tests', () => {
         await booksStorePage.navigateTo('https://demoqa.com/books');
     });
 
-    test('Check Books Landing Page headers', async ({ booksStorePage }) => {
+    test('TC-11 Browse the Books Store page without logging in', async ({ booksStorePage }) => {
         await expect(booksStorePage.booksHeader).toHaveText([
             'Image',
             'Title',
             'Author',
             'Publisher',
         ]);
+
+        await expect(booksStorePage.loginButton).toBeVisible();
     });
 
-    test('Negative test for login functionality on Books Landing Page ', async ({ booksStorePage, booksLoginPage }) => {
-        await booksStorePage.clickLoginButton();
-
-        await booksLoginPage.login('test_user', 'pass123456aA');
-        await expect(booksLoginPage.loginErrorText).toHaveText('Invalid username or password!');
-    });
-
-    test('Check login functionality on Books Landing Page', async ({ booksStorePage, booksLoginPage }) => {
+    test('TC-05 Successful login', async ({ booksStorePage, booksLoginPage }) => {
         await booksStorePage.clickLoginButton();
         await booksLoginPage.login('test_user', 'pass123456aA!');
 
@@ -30,7 +25,14 @@ test.describe('Books Application Store Tests', () => {
         await booksStorePage.clickLogoutButton();
     });
 
-    test('Add book to collection, delete book from collection and logout', async ({ booksStorePage, booksLoginPage, profilePage }) => {
+    test('TC-06 Invalid credentials', async ({ booksStorePage, booksLoginPage }) => {
+        await booksStorePage.clickLoginButton();
+
+        await booksLoginPage.login('test_user', 'pass123456aA');
+        await expect(booksLoginPage.loginErrorText).toHaveText('Invalid username or password!');
+    });
+
+    test('TC-08 Add book to collection', async ({ booksStorePage, booksLoginPage, profilePage }) => {
         await booksStorePage.clickLoginButton();
         await booksLoginPage.login('test_user', 'pass123456aA!');
         await profilePage.clickGoToStoreButton();

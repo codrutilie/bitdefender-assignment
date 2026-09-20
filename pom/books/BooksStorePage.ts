@@ -43,7 +43,7 @@ export class BooksStorePage extends BasePage {
 
         const dialog = await dialogPromise;
         const message = dialog.message();
-        console.log(`Dialog add book message: ${message}`);
+        // console.log(`Dialog add book message: ${message}`);
         await dialog.accept();
     }
 }
