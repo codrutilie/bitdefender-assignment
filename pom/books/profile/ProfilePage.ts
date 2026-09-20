@@ -2,22 +2,21 @@ import { BasePage } from '../../BasePage';
 import { Locator, Page } from '@playwright/test';
 
 export class ProfilePage extends BasePage {
-    readonly logoutBtn: Locator;
-    readonly deleteBookBtn: Locator;
-    readonly goToStoreBtn: Locator;
+    readonly logoutButton: Locator;
+    readonly deleteBookButton: Locator;
+    readonly goToStoreButton: Locator;
     readonly deleteModal: Locator;
 
     constructor(page: Page) {
         super(page);
-        this.logoutBtn = page.getByRole('button', { name: 'Logout', exact: true });
-        this.deleteBookBtn = page.locator('span[id^="delete-record-"][title="Delete"]');
-        this.goToStoreBtn = page.locator('id=gotoStore');
+        this.logoutButton = page.getByRole('button', { name: 'Logout', exact: true });
+        this.deleteBookButton = page.locator('span[id^="delete-record-"][title="Delete"]');
+        this.goToStoreButton = page.locator('id=gotoStore');
         this.deleteModal = page.locator('[role="dialog"]');
     }
 
     async goToProfilePage(): Promise<void> {
         await this.navigateTo('https://demoqa.com/profile');
-        await this.reloadPage();
         await this.reloadPage();
     }
 
@@ -27,15 +26,15 @@ export class ProfilePage extends BasePage {
     }
 
     async clickLogoutButton(): Promise<void> {
-        await this.clickElement(this.logoutBtn);
+        await this.clickElement(this.logoutButton);
     }
 
     async clickDeleteBookButton(): Promise<void> {
-        await this.clickElement(this.deleteBookBtn);
+        await this.clickElement(this.deleteBookButton);
     }
 
     async clickGoToStoreButton(): Promise<void> {
-        await this.clickElement(this.goToStoreBtn);
+        await this.clickElement(this.goToStoreButton);
     }
 
     async pressOKBtnOnDeleteModal(): Promise<void> {

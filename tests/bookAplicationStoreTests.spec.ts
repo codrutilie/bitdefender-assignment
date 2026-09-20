@@ -35,10 +35,9 @@ test.describe('Books Application Store Tests', () => {
         await booksLoginPage.login('test_user', 'pass123456aA!');
         await profilePage.clickGoToStoreButton();
 
-        let bookTitle = await booksStorePage.clickRandomBookAndGetText();
+        const bookTitle = await booksStorePage.clickRandomBookAndGetText();
 
         await booksStorePage.addBookToCollection();
-        // await booksStorePage.pressOkPopupBtn();
 
         await profilePage.goToProfilePage();
         await expect(await profilePage.getBookText(bookTitle)).toContain(bookTitle);
