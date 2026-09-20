@@ -1,4 +1,4 @@
-import { expect, test } from './fixtures';
+import { expect, test } from '../utils/fixtures';
 
 test.describe('Books Application Store Tests', () => {
     test.beforeEach(async ({ booksStorePage }) => {
