@@ -7,11 +7,11 @@ export class BasePage {
     this.page = page;
   }
 
-  async navigateTo(url: string) {
+  async navigateTo(url: string): Promise<void> {
     await this.page.goto(url);
   }
 
-  async waitForElement(locator: Locator) {
+  async waitForElement(locator: Locator): Promise<void> {
     await expect(locator).toBeVisible();
   }
 
@@ -20,17 +20,17 @@ export class BasePage {
     return await locator.textContent() || '';
   }
 
-  async clickElement(locator: Locator) {
+  async clickElement(locator: Locator): Promise<void> {
     await this.waitForElement(locator);
     await locator.click();
   }
 
-  async fillInput(locator: Locator, value: string) {
+  async fillInput(locator: Locator, value: string): Promise<void> {
     await this.waitForElement(locator);
     await locator.fill(value);
   }
 
-  async reloadPage() {
+  async reloadPage(): Promise<void> {
     await this.page.reload();
   }
 }
